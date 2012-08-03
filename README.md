@@ -17,7 +17,18 @@ replacing test-factchecker.txt with your own text file!
 
 (Warning: documents with long sentences take longer to query)
 
-Scripts included:
+## Setup
+
+You need ``nltk`` and ``numpy``.
+
+    $ pip install nltk numpy
+
+Also, ``nltk``'s stopwords corpus is necessary.
+  
+    $ python -c 'import nltk; nltk.download("stopwords")'
+
+
+## Scripts included
 
 ### parse.py
 
