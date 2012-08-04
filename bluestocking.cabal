@@ -51,7 +51,7 @@ Executable bluestocking
   Main-is:             Main.hs
   
   -- Packages needed in order to build this package.
-  Build-depends:       base, HTTP
+  Build-depends:       base, HTTP, array, regex-pcre
   
   -- Modules not exported by this package.
   Other-modules:       Doxament, Parse, Wikipedia
