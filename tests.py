@@ -49,7 +49,10 @@ class GeneralTests(unittest.TestCase):
         print self.text1
         print self.text2
         print "Knowledge base relations"
-        print self.kb.relations
+        for r in self.kb.relations:
+            print r
+
+        # print self.kb.relations
 
 
         print "Query document 1"

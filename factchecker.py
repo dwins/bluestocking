@@ -19,7 +19,7 @@ def lookup_word(word):
         print 'Looking up %s' % (word)
         raw = wiki.article(word)
     except:
-        print 'Lookup failed'
+        print 'Lookup failed (%s)' % word
         raw = None
 
     if raw:

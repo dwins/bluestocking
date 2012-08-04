@@ -3,7 +3,7 @@ import doxament
 from nltk.tokenize.punkt import PunktSentenceTokenizer
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet as wn
-from itertools import combinations
+from itertools import chain, combinations
             
 class Document:
     '''
@@ -83,9 +83,9 @@ class Parser:
         return sentence
 
     def parse_sentence(self,sentence):
-            pairs = combinations(sentence,2)
-            relations = [self.make_relation(p) for p in pairs]
-            return relations
+        pairs = combinations(sentence,2)
+        relations = [self.make_relation(p) for p in pairs]
+        return relations
 
     def make_relation(self,pair):
         co = True
@@ -167,11 +167,11 @@ def aggregate_lemmas(word,relation):
         sets = [syn.lemmas for syn in wn.synsets(word)]
     elif relation == "antonym":
         sets = [syn.lemmas for syn in wn.synsets(word)]
-        sets = list(itertools.chain(*sets))
+        sets = list(chain(*sets))
         sets = [x.antonyms() for x in sets]
         sets = [x for x in sets if x]
         
-    sets = list(itertools.chain(*sets))
+    sets = list(chain(*sets))
     sets = [lem.name for lem in sets]
     for x in sets:
         lems.add(x)

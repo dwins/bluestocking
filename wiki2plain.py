@@ -22,16 +22,16 @@ class Wiki2Plain:
         """
         wiki = re.sub(r'(?i)\{\{IPA(\-[^\|\{\}]+)*?\|([^\|\{\}]+)(\|[^\{\}]+)*?\}\}', lambda m: m.group(2), wiki)
         wiki = re.sub(r'(?i)\{\{Lang(\-[^\|\{\}]+)*?\|([^\|\{\}]+)(\|[^\{\}]+)*?\}\}', lambda m: m.group(2), wiki)
-        wiki = re.sub(r'\{\{[^\{\}]+\}\}', '', wiki)
+        wiki = re.sub(r'\{\{[^\{\}]+\}\}', '', wiki) # This is the same as the next, except the next allows multiline matches. Shouldn't it be unnecessary?
         wiki = re.sub(r'(?m)\{\{[^\{\}]+\}\}', '', wiki)
         wiki = re.sub(r'(?m)\{\|[^\{\}]*?\|\}', '', wiki)
         wiki = re.sub(r'(?i)\[\[Category:[^\[\]]*?\]\]', '', wiki)
         wiki = re.sub(r'(?i)\[\[Image:[^\[\]]*?\]\]', '', wiki)
-        wiki = re.sub(r'(?i)\[\[File:[^\[\]]*?\]\]', '', wiki)
+        wiki = re.sub(r'(?i)\[\[File:[^\[\]]*?\]\]', '', wiki) # This appears to make the file stripping below redundant
         wiki = re.sub(r'\[\[[^\[\]]*?\|([^\[\]]*?)\]\]', lambda m: m.group(1), wiki)
         wiki = re.sub(r'\[\[([^\[\]]+?)\]\]', lambda m: m.group(1), wiki)
-        wiki = re.sub(r'\[\[([^\[\]]+?)\]\]', '', wiki)
-        wiki = re.sub(r'(?i)File:[^\[\]]*?', '', wiki)
+        wiki = re.sub(r'\[\[([^\[\]]+?)\]\]', '', wiki) # Isn't this redundant with the above line?
+        wiki = re.sub(r'(?i)File:[^\[\]]*?', '', wiki) # This appears to be redundant with the File: link stripping above
         wiki = re.sub(r'\[[^\[\]]*? ([^\[\]]*?)\]', lambda m: m.group(1), wiki)
         wiki = re.sub(r"''+", '', wiki)
         wiki = re.sub(r'(?m)^\*$', '', wiki)
