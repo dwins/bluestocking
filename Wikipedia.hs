@@ -12,7 +12,7 @@ asMaybe = either (const Nothing)
                  (Just . rspBody)
 
 articleUrl :: String -> String -> String
-articleUrl = printf "http://%s.wikipedia.org/w/index.php?action=raw&title=%s"
+articleUrl lang topic = printf "http://%s.wikipedia.org/w/index.php?action=raw&title=%s" (urlEncode lang) (urlEncode topic)
 
 breakOn :: String -> String -> [String]
 breakOn pattern text =

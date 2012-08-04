@@ -11,7 +11,7 @@ type Term = String
 
 -- TODO: Get real stop word list
 stopWords :: [Term] 
-stopWords = ["a", "was", "is"]
+stopWords = ["a", "was", "is", "in"]
 
 agree :: Relation -> Relation -> Bool
 agree (Relation c s o) (Relation c' s' o') =
