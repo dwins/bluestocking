@@ -1,5 +1,6 @@
 module Main where
 
+import Data.List
 import System.Environment
 import Wikipedia hiding (main)
 import Doxament
@@ -26,7 +27,7 @@ queryFromArgs def args | null args = def
 main :: IO ()
 main = do args <- getArgs
           let q = queryFromArgs "Uruguay is not in South America." args
-          let terms = (removeStops . concat . sentences) q
+          let terms = nub . removeStops . concat . sentences $ q
           articles <- mapM noisyFetchArticle terms
           putStrLn "Building knowledge base"
           let corpus = buildCorpus articles

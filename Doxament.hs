@@ -14,11 +14,11 @@ corpusAgree d r = any (agree r) d
 
 query :: Doxament -> Doxament -> (Score, Contradictions)
 query corpus q = (score', contradictions)
-    where contradictions = (filter (corpusAgree corpus) . map flipRelation) q
+    where contradictions = filter (corpusAgree corpus . flipRelation) q
           agreements = filter (corpusAgree corpus) q 
           score' = count / total 
-          count = fromIntegral (length agreements - length contradictions)
-          total = fromIntegral (length corpus)
+          count = fromIntegral $ length agreements - length contradictions
+          total = fromIntegral $ length q
 
 merge :: Doxament -> Doxament -> Doxament
 merge = (++)
